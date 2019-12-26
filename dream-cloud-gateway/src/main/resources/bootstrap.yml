@@ -1,0 +1,18 @@
+server:
+  port: 20000
+
+spring:
+  application:
+    name: dream-cloud-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+          lowerCaseServiceId: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:11000/eureka/
+
+

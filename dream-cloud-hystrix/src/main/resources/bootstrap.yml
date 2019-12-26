@@ -1,0 +1,13 @@
+server:
+  port: 14000
+
+spring:
+  application:
+    name: dream-cloud-hystrix
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:11000/eureka/
+
+

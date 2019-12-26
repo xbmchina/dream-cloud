@@ -1,0 +1,13 @@
+server:
+  port: 12000
+
+spring:
+  application:
+    name: dream-cloud-authority
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:11000/eureka/
+
+

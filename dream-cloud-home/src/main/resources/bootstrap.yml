@@ -1,0 +1,13 @@
+server:
+  port: 13000
+
+spring:
+  application:
+    name: dream-cloud-home
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:11000/eureka/
+
+

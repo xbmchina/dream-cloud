@@ -1,0 +1,20 @@
+server:
+  port: 16000
+
+spring:
+  application:
+    name: dream-cloud-config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/forezp/SpringcloudConfig/
+          search-paths: respo
+          username:
+          password:
+      label: master
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:11000/eureka/

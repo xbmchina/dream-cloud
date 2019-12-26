@@ -1,0 +1,15 @@
+
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: dream-cloud-authority
+        uri: lb://DREAM-CLOUD-AUTHORITY
+        predicates:
+          - Path=/authority/**
+        filters:
+          - StripPrefix=1
+
+logging:
+  level:
+    org.springframework.cloud.gateway: debug

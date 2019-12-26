@@ -1,0 +1,20 @@
+server:
+  port: 15000
+
+spring:
+  application:
+    name: dream-cloud-manager
+  cloud:
+    config:
+      uri: http://localhost:16000/
+      label: master
+      profile: dev
+      discovery:
+        enabled: true
+        service-id: dream-cloud-config
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:11000/eureka/
+
