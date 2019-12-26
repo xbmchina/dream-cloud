@@ -6,7 +6,7 @@ spring:
     name: dream-cloud-manager
   cloud:
     config:
-      uri: http://localhost:16000/
+#      uri: http://localhost:16000/
       label: master
       profile: dev
       discovery:

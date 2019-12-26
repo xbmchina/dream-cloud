@@ -8,10 +8,10 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/forezp/SpringcloudConfig/
-          search-paths: respo
-          username:
-          password:
+          uri: https://github.com/xbmchina/dream-cloud
+          search-paths: conf
+          username: xbmchina
+          password: xbm6914183
       label: master
 
 eureka:

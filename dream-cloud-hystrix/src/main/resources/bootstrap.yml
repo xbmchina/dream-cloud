@@ -4,6 +4,14 @@ server:
 spring:
   application:
     name: dream-cloud-hystrix
+  cloud:
+    config:
+#      uri: http://localhost:16000/
+      label: master
+      profile: dev
+      discovery:
+        enabled: true
+        service-id: dream-cloud-config
 
 eureka:
   client:
