@@ -1,5 +1,9 @@
 server:
   port: 12000
+  tomcat:
+    accesslog:
+      enabled: true
+    basedir: log/${spring.application.name}
 
 spring:
   application:
@@ -15,7 +19,10 @@ spring:
 
 eureka:
   client:
-    service-url:
-      defaultZone: http://127.0.0.1:11000/eureka/
+    serviceUrl:
+      defaultZone: http://dream-cloud-eureka01:11000/eureka/,http://dream-cloud-eureka02:11001/eureka/
+  instance:
+    ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port} (@project.version@)
 
 

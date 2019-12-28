@@ -1,10 +1,16 @@
 
 server:
   port: 11000
+  tomcat:
+      accesslog:
+        enabled: true
+      basedir: log/${spring.application.name}
 
 eureka:
   instance:
     hostname: 127.0.0.1
+    ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port} (@project.version@)
   client:
     registerWithEureka: false
     fetchRegistry: false
