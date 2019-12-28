@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>cn.xbmchina</groupId>
 	<artifactId>dream-cloud-eureka</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>dream-cloud-eureka</name>
 	<description>注册中心</description>
 

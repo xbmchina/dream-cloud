@@ -1,9 +1,10 @@
-package cn.xbmchina.repository;
+package cn.xbmchina.dreamcloudgateway.repository;
 
 import cn.xbmchina.domain.Role;
 import cn.xbmchina.domain.RoleExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface RoleMapper {
     long countByExample(RoleExample example);

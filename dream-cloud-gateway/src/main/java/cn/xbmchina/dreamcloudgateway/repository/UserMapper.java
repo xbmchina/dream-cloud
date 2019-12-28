@@ -1,9 +1,10 @@
-package cn.xbmchina.repository;
+package cn.xbmchina.dreamcloudgateway.repository;
 
 import cn.xbmchina.domain.User;
 import cn.xbmchina.domain.UserExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface UserMapper {
     long countByExample(UserExample example);

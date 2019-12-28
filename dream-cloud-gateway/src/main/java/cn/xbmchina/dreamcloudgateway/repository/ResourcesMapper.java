@@ -1,9 +1,10 @@
-package cn.xbmchina.repository;
+package cn.xbmchina.dreamcloudgateway.repository;
 
 import cn.xbmchina.domain.Resources;
 import cn.xbmchina.domain.ResourcesExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface ResourcesMapper {
     long countByExample(ResourcesExample example);
