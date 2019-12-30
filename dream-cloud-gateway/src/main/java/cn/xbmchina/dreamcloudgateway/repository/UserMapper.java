@@ -2,6 +2,7 @@ package cn.xbmchina.dreamcloudgateway.repository;
 
 import cn.xbmchina.domain.User;
 import cn.xbmchina.domain.UserExample;
+import cn.xbmchina.domain.UserRole;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -28,4 +29,10 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    int delRolesByUserId(Long userId);
+
+    int addUserRole(UserRole u);
+
+
 }

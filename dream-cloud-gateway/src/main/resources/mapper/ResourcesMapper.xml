@@ -240,4 +240,32 @@
       res_key = #{resKey,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="resourcesListWithRole" parameterType="java.lang.Integer" resultType="cn.xbmchina.bo.RResourcesBo">
+    SELECT re.id,re.name,re.parent_id as parentId,re.res_url as resUrl,re.type,re.res_key as resKey,
+    (CASE WHEN EXISTS(SELECT 1
+    FROM dc_role_resources rr WHERE rr.resources_id=re.id AND rr.role_id=#{roleId} )
+    THEN 'true' ELSE 'false' END) AS checked
+    FROM dc_resources re
+    WHERE re.parent_id !=0
+    ORDER BY re.sort ASC
+  </select>
+
+  <select id="loadMenu" parameterType="cn.xbmchina.domain.Resources" resultType="cn.xbmchina.domain.Resources">
+    SELECT re.id,re.name,re.parent_id as parentId,re.res_url as resUrl,re.res_key resKey,u.username
+    FROM dc_resources re,dc_role_resources rr,dc_user_role ur,dc_user u
+    WHERE re.id = rr.resources_id AND rr.role_id = ur.role_id
+    AND ur.user_id =u.id
+    <if test="username != null and username != ''">
+      AND u.username=#{username}
+    </if>
+    <if test="type != null">
+      AND re.type= #{type}
+    </if>
+    <if test="resUrl != null and resUrl != ''">
+      AND re.res_url= #{resUrl}
+    </if>
+    GROUP BY re.id
+    ORDER BY re.sort ASC
+  </select>
 </mapper>

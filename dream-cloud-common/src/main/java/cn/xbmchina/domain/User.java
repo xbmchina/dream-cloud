@@ -1,6 +1,8 @@
 package cn.xbmchina.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class User implements Serializable {
     private Long id;
@@ -16,6 +18,8 @@ public class User implements Serializable {
     private String address;
 
     private Byte enable;
+
+    private List<Role> roleList = new ArrayList<>();
 
     private static final long serialVersionUID = 1L;
 
@@ -74,4 +78,14 @@ public class User implements Serializable {
     public void setEnable(Byte enable) {
         this.enable = enable;
     }
+
+    public List<Role> getRoleList() {
+        return roleList;
+    }
+
+    public void setRoleList(List<Role> roleList) {
+        this.roleList = roleList;
+    }
+
+
 }

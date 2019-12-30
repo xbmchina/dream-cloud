@@ -31,7 +31,6 @@
 	<modules>
 		<module>dream-cloud-eureka</module>
 		<module>dream-cloud-gateway</module>
-		<module>dream-cloud-authority</module>
 		<module>dream-cloud-home</module>
 		<module>dream-cloud-hystrix</module>
 		<module>dream-cloud-manager</module>

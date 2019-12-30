@@ -1,7 +1,9 @@
 package cn.xbmchina.dreamcloudgateway.repository;
 
+import cn.xbmchina.bo.UserRoleBo;
 import cn.xbmchina.domain.Role;
 import cn.xbmchina.domain.RoleExample;
+import cn.xbmchina.domain.RoleResources;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -28,4 +30,10 @@ public interface RoleMapper {
     int updateByPrimaryKeySelective(Role record);
 
     int updateByPrimaryKey(Role record);
+
+    List<UserRoleBo> queryRoleListWithUser(Long userId);
+
+    int deleteRoleResources(Integer roleId);
+
+    int addRoleResources(RoleResources roleResources);
 }

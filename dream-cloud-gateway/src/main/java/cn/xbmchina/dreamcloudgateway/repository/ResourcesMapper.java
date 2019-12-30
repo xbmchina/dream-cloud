@@ -1,5 +1,6 @@
 package cn.xbmchina.dreamcloudgateway.repository;
 
+import cn.xbmchina.bo.RResourcesBo;
 import cn.xbmchina.domain.Resources;
 import cn.xbmchina.domain.ResourcesExample;
 import org.apache.ibatis.annotations.Param;
@@ -28,4 +29,8 @@ public interface ResourcesMapper {
     int updateByPrimaryKeySelective(Resources record);
 
     int updateByPrimaryKey(Resources record);
+
+    List<RResourcesBo> resourcesListWithRole(Integer roleId);
+
+    List<Resources> loadMenu(Resources resources);
 }

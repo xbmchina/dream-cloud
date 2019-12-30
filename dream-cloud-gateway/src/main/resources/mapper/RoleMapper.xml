@@ -178,4 +178,18 @@
       descrption = #{descrption,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="queryRoleListWithUser" parameterType="java.lang.Long" resultType="cn.xbmchina.bo.UserRoleBo">
+    SELECT r.id,r.descrption,r.name,
+    (CASE WHEN (SELECT ur.role_id FROM dc_user_role ur WHERE ur.user_id= #{userId} AND ur.role_id = r.id) THEN 1 ELSE 0 END) AS selected
+    FROM dc_role r
+  </select>
+
+  <delete id="deleteRoleResources" parameterType="java.lang.Integer">
+    DELETE FROM dc_role_resources WHERE role_id =#{roleId}
+  </delete>
+
+  <insert id="addRoleResources">
+    INSERT INTO dc_role_resources(role_id,resources_id) VALUES (#{roleId},#{resourcesId})
+  </insert>
+
 </mapper>

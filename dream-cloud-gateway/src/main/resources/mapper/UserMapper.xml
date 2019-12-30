@@ -240,4 +240,14 @@
       enable = #{enable,jdbcType=TINYINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+
+  <delete id="delRolesByUserId" parameterType="java.lang.Long">
+    DELETE FROM dc_user_role WHERE user_id = #{userId}
+  </delete>
+
+  <insert id="addUserRole">
+	INSERT INTO dc_user_role(user_id,role_id) VALUES (#{userId},#{roleId})
+  </insert>
+
 </mapper>
