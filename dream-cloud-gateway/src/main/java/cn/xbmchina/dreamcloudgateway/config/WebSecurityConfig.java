@@ -1,5 +1,9 @@
 package cn.xbmchina.dreamcloudgateway.config;
 
+import cn.xbmchina.dreamcloudgateway.handler.CustomSecurityMetadataSourceObjectPostProcessor;
+import cn.xbmchina.dreamcloudgateway.handler.GlobalSecurityExpressionHandlerCacheObjectPostProcessor;
+import cn.xbmchina.dreamcloudgateway.handler.JdbcSecurityMetaDataSourceLoader;
+import cn.xbmchina.dreamcloudgateway.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
@@ -24,6 +28,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     AccessControlProperties accessControlProperties;
 
+    @Autowired
+    private UserService userService;
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
@@ -40,19 +46,28 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.exceptionHandling().authenticationEntryPoint(authenticationFailureHandler())
                 .accessDeniedHandler(accessDeniedHandler());
 
-        //从配置文件读取premitAll的配置
-        if (accessControlProperties.getPremitAll() != null) {
-            for (ResourcePermission rp : accessControlProperties.getPremitAll()) {
-                httpSecurity.authorizeRequests().antMatchers(rp.getUrls()).permitAll();
-            }
-        }
-        //从配置文件读取hasAnyRole的配置
-        if (accessControlProperties.getHasAnyRole() != null) {
-            for (ResourcePermission rp : accessControlProperties.getHasAnyRole()) {
-                httpSecurity.authorizeRequests().antMatchers(rp.getUrls()).hasAnyRole(rp.getRoles());
-            }
-        }
-        httpSecurity.authorizeRequests().anyRequest().permitAll();
+////        从配置文件读取premitAll的配置
+//        if (accessControlProperties.getPremitAll() != null) {
+//            for (ResourcePermission rp : accessControlProperties.getPremitAll()) {
+//                httpSecurity.authorizeRequests().antMatchers(rp.getUrls()).permitAll();
+//            }
+//        }
+//        从配置文件读取hasAnyRole的配置
+//        if (accessControlProperties.getHasAnyRole() != null) {
+//            for (ResourcePermission rp : accessControlProperties.getHasAnyRole()) {
+//                httpSecurity.authorizeRequests().antMatchers(rp.getUrls()).hasAnyRole(rp.getRoles());
+//            }
+//        }
+////
+//        httpSecurity.authorizeRequests().anyRequest().hasAuthority("wirite,ADMIN");
+//        httpSecurity.authorizeRequests().anyRequest().permitAll();
+
+
+        httpSecurity.authorizeRequests().anyRequest().authenticated()
+                .withObjectPostProcessor(
+                        new CustomSecurityMetadataSourceObjectPostProcessor(
+                        new JdbcSecurityMetaDataSourceLoader(userService)))
+                .withObjectPostProcessor(new GlobalSecurityExpressionHandlerCacheObjectPostProcessor());
 
         httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
     }
@@ -68,6 +83,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             }
         }
     }
+
 
     @Bean
     public CustomAuthenticationEntryPoint authenticationFailureHandler() {
